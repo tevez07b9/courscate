@@ -5,12 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 class LooperController extends Controller
-{
+{   
+    /**
+     * Show Page To make Pattern
+     *
+     * @param  none
+     * @return view()
+     */
     public function index()
     {
         return view("admin/make_loop");
     }
 
+    /**
+     * Generates loop with given parameter
+     *
+     * @param  Illuminate\Http\Request  $request
+     * @return view()
+     */
     public function loop_it(Request $request)
     {
         $validatedData = $request->validate([

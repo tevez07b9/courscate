@@ -9,17 +9,35 @@ use App\Employee;
 
 class EmployeeController extends Controller
 {
+    /**
+     * Get All Employees
+     *
+     * @param  none
+     * @return view()
+     */
     public function index()
     {
         $employees = Employee::all();
         return view("admin/employees", ["employees" => $employees]);        
     }
 
+    /**
+     * View for CSV upload
+     *
+     * @param  none
+     * @return view()
+     */
     public function add_csv()
     {
         return view("admin/add_employee_csv");
     }
 
+    /**
+     * Make employees from CSV data
+     *
+     * @param  Illuminate\Http\Request  $request
+     * @return redirect()
+     */
     public function store_csv(Request $request)
     {
         $validatedData = $request->validate([
@@ -112,13 +130,24 @@ class EmployeeController extends Controller
         }
     }
     
+    /**
+     * Add Employee Page
+     *
+     * @param  none
+     * @return view()
+     */
     public function add()
     {
         return view("admin/add_employee");
     }
 
     
-
+    /**
+     * Insert a New Employee
+     *
+     * @param  Illuminate\Http\Request  $request
+     * @return redirect()
+     */
     public function store(Request $request)
     {   
         $validatedData = $request->validate([

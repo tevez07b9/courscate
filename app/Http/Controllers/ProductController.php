@@ -9,6 +9,12 @@ use App\Product;
 
 class ProductController extends Controller
 {
+    /**
+     * Get All Products or view search results
+     *
+     * @param  Illuminate\Http\Request  $request
+     * @return view()
+     */
     public function index(Request $request)
     {
 
@@ -18,7 +24,7 @@ class ProductController extends Controller
         // Product and Category models, since each category can
         // have multiple product, but each product has only one
         // category
-        
+
         if($request->has('query')) {
             $query = $request->input("query");
             $products = DB::table('products')
@@ -35,18 +41,36 @@ class ProductController extends Controller
         return view("admin/products", ["products" => $products]);
     }
     
+    /**
+     * Add Product Page
+     *
+     * @param  none
+     * @return view()
+     */
     public function add()
     {
         $categories = Category::all();
         return view("admin/add_product", ["categories" => $categories]);
     }
 
+    /**
+     * Edit product page
+     *
+     * @param  Illuminate\Http\Request  $request
+     * @return view()
+     */
     public function edit_product(Product $product)
     {
         $categories = Category::all();
         return view("admin/edit_product", ["product" => $product, "categories" => $categories]);
     }
 
+    /**
+     * Insert a New Product
+     *
+     * @param  Illuminate\Http\Request  $request
+     * @return redirect()
+     */
     public function store(Request $request)
     {   
         $validatedData = $request->validate([
@@ -68,6 +92,12 @@ class ProductController extends Controller
     	return redirect(url("admin/add_product"));
     }
 
+    /**
+     * Edits A product
+     *
+     * @param  Illuminate\Http\Request  $request, App\Product $product
+     * @return redirect()
+     */
     public function edit(Request $request, Product $product)
     {   
         $validatedData = $request->validate([
@@ -89,6 +119,12 @@ class ProductController extends Controller
     	return redirect(url("admin/edit_product/".$product->id));
     }
 
+    /**
+     * Deletes a product
+     *
+     * @param  Illuminate\Http\Request  $request, App\Product $product
+     * @return redirect()
+     */
     public function delete(Request $request, Product $product)
     {
     	
