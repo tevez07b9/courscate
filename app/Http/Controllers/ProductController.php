@@ -11,6 +11,14 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
+
+        // Another way to join the categories is to
+        // use Eloquent relationship, here i 
+        // could have created a One to Many Relationship b/w
+        // Product and Category models, since each category can
+        // have multiple product, but each product has only one
+        // category
+        
         if($request->has('query')) {
             $query = $request->input("query");
             $products = DB::table('products')
