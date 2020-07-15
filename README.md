@@ -17,5 +17,9 @@ Go to the Register Page and Register as an Admin
 
 Then login and go to the Admin Panel where you will find all the modules.
 
+## CSV Upload
+
+I have attached a sample CSV file, make sure the format is same as this file. You can find the file in public/employees.csv
+
 Made By,
 Talmeez Ahmed
