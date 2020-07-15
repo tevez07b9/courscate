@@ -17,7 +17,21 @@
             <div class="card-box table-responsive">
                 
                 <h4 class="m-t-0 header-title"><b>All Products</b></h4>
-                
+                <form class="form-horizontal" role="form" method="get" action="{{ url('admin/products') }}" enctype="multipart/form-data">
+                    @csrf
+                        
+                    
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Search</label>
+                        <div class="col-md-8">
+                        <input type="text" class="form-control" name="query" placeholder="Search...">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="submit" name='submit' value='Search' class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
 
                 <table  class="table table-striped m-0">
                     <thead>
@@ -47,6 +61,7 @@
                     
                     </tbody>
                 </table>
+                {{ $products->links() }}
                 </div>
             </div>
       </div>

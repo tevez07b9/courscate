@@ -9,11 +9,20 @@ use App\Product;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = DB::table('products')
+        if($request->has('query')) {
+            $query = $request->input("query");
+            $products = DB::table('products')
+            ->join('categories', 'categories.cat_id', '=', 'products.product_category')
+            ->where('products.product_name', 'like', '%' . $query . '%')
+            ->paginate(10); 
+        } else {
+            $products = DB::table('products')
                     ->join('categories', 'categories.cat_id', '=', 'products.product_category')
-                    ->get();
+                    ->paginate(10);
+        }
+        
         
         return view("admin/products", ["products" => $products]);
     }
