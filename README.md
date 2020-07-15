@@ -4,11 +4,11 @@ The Modules Built Are:
 
 -   [Products].
 -   [Employees].
--   [Alphabetical Pattend].
+-   [Alphabetical Pattern].
 
 All the code is present at the Admin Panel
 To run the project:
-`php artisan migrate` and `php artisa serve`
+`php artisan migrate` and `php artisan serve`
 Or you could deploy it to a server!
 
 ## How To Use
